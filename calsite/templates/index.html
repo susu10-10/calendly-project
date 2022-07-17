@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block link %} <link rel="stylesheet" href="../static/styles.css"> {% endblock %}
+{% block title %} Calendly - Free Online Appointment {% endblock %}
+{% block content %}
+<div class="container godown mb-5">
+  <div class="row">
+    <div class="col-4">
+      <h1 class="text-color">Easy scheduling <span class="text-primary">ahead</span></h1>
+      <p>Calendly is your hub for scheduling meetings professionally and efficiently, 
+        eliminating the hassle of back-and-forth emails so you can get back to work.
+      </p>
+        <form method="post">
+          <div class="input-group">
+            <input type="email" name="email"
+              class="form-control" id="email"
+              placeholder="Enter your email">
+            <div class="input-group-append">
+              <a><button type="submit" class="btn btn-dark">Sign up</button></a></div>
+          </div>
+        </form>
+      <p class="mt-2">Create your free account. No credit card required.</p>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <pre>simplified scheduling for more than 
+  <span class="text-primary">10,000,000</span> user worldwide</pre>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="getstartedmodal" tabindex="-1" role="dialog" aria-labelledby="getstartedmodal" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="mx-auto">Get Started Today</h5>
+    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form action="#">
+      <div class="d-grid col-10 mx-auto mb-5">
+        <form action="#" method="post">
+          <div class="form-group mb-3">
+            <input type="email" name="email"
+              class="form-control" id="email"
+              placeholder="Enter your email">
+          </div>
+        </form>
+        <a><button class="btn-xl btn-primary mb-4 p-2" type="button">Get Started</button></a>
+        <h5 class="hr-lines">or</h5>
+        <a href="#"><button class="btn-xl btn-outline-primary p-2 my-3" type="button"><i class="bi bi-google pe-2"></i> Sign up with Google</button></a>
+        <a href="#"><button class="btn-xl btn-outline-primary p-2" type="button"><i class="bi bi-microsoft pe-2"></i>  Sign up with Microsoft</button></a>
+        </div>
+    </form>
+  </div>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!--bs icons-->
+    <link rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+  </body>
+</html>

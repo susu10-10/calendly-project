@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+    <div class="container-fluid p-3 ">
+      <a class="navbar-brand ms-5" href="{{ url_for('calhome') }}">
+        <img src="{{ url_for('static', filename='calogo.svg') }}" alt="cal logo" width="120" height="30">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#calnavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="bi bi-menu-up"></i></span>
+      </button>
+      <div class="collapse navbar-collapse" id="calnavbar">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item ps-4">
+                <a class="nav-link text-dark fw-bold" href="#">Individuals</a>
+            </li>
+            <li class="nav-item ps-4">
+                <a class="nav-link text-dark fw-bold" href="#">Teams</a>
+            </li>
+            <li class="nav-item ps-4">
+                <a class="nav-link text-dark fw-bold" href="#">Enterprise</a>
+            </li>
+          <li class="nav-item dropdown ps-4">
+            <a class="nav-link dropdown-toggle text-dark fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Product
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Solutions</a></li>
+              <li><a class="dropdown-item" href="#">Features</a></li>
+              <li><a class="dropdown-item" href="#">Marketing</a></li>
+            </ul>
+          </li>
+          <li class="nav-item ps-4">
+            <a class="nav-link text-dark fw-bold" href="#">Pricing</a>
+        </li>
+        <li class="nav-item dropdown ps-4">
+            <a class="nav-link dropdown-toggle text-dark fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Resources
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">About</a></li>
+              <li><a class="dropdown-item" href="#">Resource Center</a></li>
+              <li><a class="dropdown-item" href="#">Help Center</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="navbar-nav fw-bold">
+            <li class="nav-item pe-3">
+                <a class="nav-link text-dark" href="{{ url_for('login') }}">Log in</a>
+            </li>
+            <button class="btn btn-primary getstarted px-3 fw-bold"
+            data-bs-toggle="modal" data-bs-target="#getstartedmodal">Get Started</button>
+        </ul>
+      </div>
+    </div>
+</nav>
