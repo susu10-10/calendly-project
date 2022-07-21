@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
     <div class="container-fluid p-3 ">
       <a class="navbar-brand ms-5" href="{{ url_for('calhome') }}">
-        <img src="{{ url_for('static', filename='calogo.svg') }}" alt="cal logo" width="120" height="30">
+        <img src="{{ url_for('static', filename='images/calogo.svg') }}" alt="cal logo" width="120" height="30">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#calnavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span><i class="bi bi-menu-up"></i></span>
@@ -45,8 +45,10 @@
             <li class="nav-item pe-3">
                 <a class="nav-link text-dark" href="{{ url_for('login') }}">Log in</a>
             </li>
-            <button class="btn btn-primary getstarted px-3 fw-bold"
-            data-bs-toggle="modal" data-bs-target="#getstartedmodal">Get Started</button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary getstarted fw-bold" data-bs-toggle="modal" data-bs-target="#getstarted">
+              Get started
+            </button>
         </ul>
       </div>
     </div>

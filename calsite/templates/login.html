@@ -10,7 +10,7 @@
     rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
     crossorigin="anonymous">
 
-    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <title>Welcome back to calendly</title>
     <style>
       .text-color {
@@ -23,7 +23,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
         <div class="container-fluid p-3 ms-5">
           <a class="navbar-brand" href="{{ url_for('calhome') }}">
-            <img src="calogo.svg" alt="cal logo" width="120" height="30">
+            <img src="{{ url_for('static', filename='images/calogo.svg') }}" alt="cal logo" width="120" height="30">
           </a>
       </nav>
       <div class="container godown mb-5">
