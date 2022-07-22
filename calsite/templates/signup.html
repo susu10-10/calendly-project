@@ -12,7 +12,7 @@
         <p class="text-center mt-2 mb-4">Sign up with calendly for free</p>
         </div>
     <div class="p-4 signup mx-auto">
-        <form action="#" class="mb-3" method="POST">
+        <form action="#" class="mb-3" method="POST" novalidate>
             {{ form.hidden_tag() }}
             <div class="form-group mb-3">
                 {{ form.email.label(class="mt-3 mb-2 fw-bold check")}}
@@ -25,6 +25,10 @@
             <div class="form-group mb-3">
                 {{ form.password.label(class="mb-2 fw-bold check")}}
                 {{ form.password(class="form-control", placeholder="password")}}
+                <!--add the error message-->
+                {% for error in form.password.errors %}
+                    <span class="text-danger">[{{ error }}]</span>
+                {% endfor %}
             </div>
             <ul class="text-danger check">
             <li>use a few words, avoid common phrase</li>

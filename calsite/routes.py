@@ -34,11 +34,14 @@ def login():
     else:
         return render_template('login.html', form=form)
 
-@app.route("/login2/<em>")
+@app.route("/login2/<em>", methods=['GET','POST'])
 def login2(em):
     em = em
     em2 = f"<strong>{em}</strong>"
     form = LoginForm()
+    if form.validate_on_submit():
+        flash('You have been logged in successfully', 'success')
+        return redirect(url_for('home'))
     return render_template('login2.html', form=form, em=em, em2=em2)
 
 
