@@ -27,6 +27,18 @@
           </a>
       </nav>
       <div class="container godown mb-5">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+              {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show" 
+              role="alert">
+                  {{ message }}
+                  <button type="button" class="btn-close" 
+                  data-bs-dismiss="alert" aria-label="Close"></button>
+              </div> 
+          {% endfor %}
+          {% endif %}
+      {% endwith %}
         <div class="row">
           <div class="col-4">
             <h1 class="text-color">Welcome back to <span class="text-primary">Calendly</span></h1>
@@ -35,11 +47,11 @@
             <p class="fw-b">Email Address</p>
             <form method="post">
               <div class="input-group">
-                <input type="email" name="email"
-                  class="form-control" id="email"
-                  placeholder="Enter your email" required>
+                {{ form.hidden_tag() }}
+                {{ form.email(class='form-control', placeholder='Enter your email')}}
                 <div class="input-group-append">
-                  <a><button type="submit" class="btn btn-primary">Log in</button></a></div>
+                  {{ form.submit(class='btn btn-primary')}}
+                </div>
               </div>
             </form>
             <p class="mt-5">Don't have an account? 

@@ -4,6 +4,18 @@
 <title>{% block title %} Log in -Calendly {% endblock %}</title>
 
 {% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %} 
+      {% if messages %} 
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show" 
+          role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" 
+              data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+      {% endwith %}
     <div class="container mt-5 ">
         <div class="text-center col">
             <a href="{{ url_for('calhome') }}">
@@ -12,15 +24,8 @@
             <p>Welcome Back! {{ em2 |safe}}</p>
         </div>
     <div class="p-4 signup mx-auto mt-4">
-        <form method="post" class="mb-3" novalidate>
+        <form method="post" class="mb-3">
             {{ form.hidden_tag() }}
-            <!-- <div class="form-group mb-3">
-                <label class="mb-2 fw-bold check" for="email">Enter your email</label>
-                <input type="password" id="passwd"
-                name="password" placeholder="johndoe@xyz.com"
-                class="form-control">
-            </div> -->
-            
             <div class="form-group mb-3">
                 {{ form.password.label(class='form-control-label fw-bold mb-2') }}
                 {{ form.password(class='form-control mb-2', placeholder='password')}}
