@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, DateField, TimeField
 from wtforms.validators import DataRequired, EqualTo, ValidationError
 from calsite.models import User
 
@@ -35,3 +35,12 @@ class EmailForm(FlaskForm):
             return user
         else:
             raise ValidationError('Email not found')
+
+
+class EventForm(FlaskForm):
+    title = StringField('Enter the title of your Event')
+    start_date = DateField('Enter Start Date and time', validators=[DataRequired()], id='datepick')
+    end_date = DateField('Enter end date and time', validators=[DataRequired()], id='datepick')
+    description = StringField('Description', validators=[DataRequired()])
+    invitees = StringField('Participants(separted by comma)', validators=[DataRequired()])
+    submit = SubmitField('Continue')

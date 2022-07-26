@@ -1,120 +1,71 @@
-<!doctype html>
-    <html lang="en">
-      <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
-        rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
-        crossorigin="anonymous">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
-        <title>My Calendly - Event Types - Calendly</title>
-      <style>
-        .user {
-          border-radius: 60%;
-        }
-      </style>
-      </head>
-    
-      <body>
-        <nav class="navbar navbar-expand-md navbar-light bg-light navbar-fixed-top">
-            <div class="container d-flex">
-                <a class="navbar-brand flex-grow-1" href="index.html">
-                <img src="{{ url_for('static', filename='images/c-logo.png') }}" alt="cal logo" width="35">
-                </a>
-          <button class="navbar-toggler user" type="button" data-bs-toggle="collapse" data-bs-target="#calnavbar" aria-controls="navbarSupportedContent" 
-          aria-expanded="false" aria-label="Toggle navigation">
-          </button>
-            <div class="collapse navbar-collapse" id="calnavbar">
-            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-              <li class="nav-item ps-4">
-                <a class="nav-link text-dark active" href="#">Home</a>
-              </li>
-              <li class="nav-item ps-4">
-                <a class="nav-link text-dark" href="#">Availablity</a>
-              </li>
-              <li class="nav-item ps-4">
-                <a class="nav-link text-dark" href="#">Integrations</a>
-              </li>
-              <li class="nav-item ps-4">
-                <a class="nav-link text-dark" href="#">Help</a>
-              </li>
-              <li class="nav-item ps-4 dropdown">
-                <a class="nav-link text-dark dropdown-toggle" href="#"
-                id="account" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                  <span><i class="bi bi-person"></i></span> Account</a>
-                  <ul class="dropdown-menu" aria-labelledby="account">
-                    <li><a href="#" class="nav-link dropdonw-item">Profile</a></li>
-                    <li><a href="{{ url_for('logout') }}" class="nav-link dropdonw-item">Log out</a></li>
-                  </ul>
-              </li>
-        </nav>
-        <div class="container-fluid">
-          {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                <div class="alert alert-{{ category }} alert-dismissible fade show" 
-                role="alert">
-                    {{ message }}
-                    <button type="button" class="btn-close" 
-                    data-bs-dismiss="alert" aria-label="Close"></button>
-                </div> 
-            {% endfor %}
-            {% endif %}
-          {% endwith %}
-        </div>
-        <div class="container my-5">
-        <div class="row">
-          <div class="d-flex justify-content-between">
-            <p class="fs-3">My Calendly</p>
-          <a href="#"><button class="btn btn-primary btn-md getstarted fw-bold py-2 px-3">+ Create</button></a>
-          </div>
-          <div>
-            <p>Event Types</p>
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">xyzjohn</h5>
-                    <p class="card-text text-muted">15 mins, One-on-One</p>
-                    <a href="#" class="card-text text-primary text-decoration-none">View booking page</a><br>
-                    <div class="d-flex justify-content-between">
-                      <a href="#">Copy link</a>
-                      <a href="#" class="btn btn-outline-primary getstarted mt-3">Share</a>
-                    </div>
-                  </div>
+{% extends 'base2.html' %}
+
+{% block content %}
+  <div class="row">
+    <div class="d-flex justify-content-between">
+      <p class="fs-3">My Calendly</p>
+    <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#getstarted">+ Create</button>
+    </div>
+    <div>
+      <p class="fs-1">Events</p>
+      <div class="row">
+        {% for event in myevent %}
+          <div class="col-sm-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title d-flex justify-content-between">
+                  <h5><a href="{{ url_for('event', event_id=event.id) }}" class="text-decoration-none">{{ event.title }}</a></h5>
                 </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
+                <p class="card-text text-muted">{{ event.description }}.</p>
+                <p class="text-muted">{{ event.start_date }} to {{ event.end_date }}</p>
+                <div class="d-flex justify-content-between">
+                  <a href="#">Copy link</a>
+                  <a href="#" class="btn btn-outline-primary getstarted mt-3">Share</a>
                 </div>
               </div>
             </div>
           </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!--CREATE MODAL FORM-->
+  <div class="modal fade" id="getstarted" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title mx-auto fw-bold" id="exampleModalLabel">Create a New Event Now</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <form class="form-control p-2" method="post">
+              {{ form.hidden_tag() }}
+              <div class="form-group mb-2">
+                {{ form.title.label(class='mb-2 fw-bold') }}
+                {{ form.title(class='form-control')}}
+              </div>
+              <div class="form-group mb-2">
+                {{ form.start_date.label(class='mb-2 fw-bold') }}
+                {{ form.start_date(class='form-control')}}
+              </div>
+              <div class="form-group mb-2">
+                {{ form.end_date.label(class='mb-2 fw-bold') }}
+                {{ form.end_date(class='form-control')}}
+              </div>
+              <div class="form-group mb-2">
+                {{ form.description.label(class='mb-2 fw-bold') }}
+                {{ form.description(class='form-control')}}
+              </div>
+              <div class="form-group mb-3">
+                {{ form.invitees.label(class='mb-2 fw-bold') }}
+                {{ form.invitees(class='form-control')}}
+              </div>
+              {{ form.submit(class='btn btn-primary')}}
+            </form>
+          </div>
         </div>
-        <!-- Optional JavaScript; choose one of the two! -->
-    
-        <!-- Option 1: Bootstrap Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    
-        <!-- Option 2: Separate Popper and Bootstrap JS -->
-        <!--
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-        -->
-        <!--bs icons-->
-        <link rel="stylesheet" 
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-      </body>
-    </html>
-    
+      </div>
+    </div>
+  {% endblock %}

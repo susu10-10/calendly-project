@@ -1,0 +1,61 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+    <div class="col-sm-6 mb-4">
+    <div class="card">
+        <div class="card-body">
+        <div class="card-title d-flex justify-content-between">
+            <h5>{{ event.title }}</h5>
+            <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#getstarted">Edit</button>
+            <a href="{{ url_for('delete_event', event_id=event.id) }}"><button class="btn btn-danger">Cancel Event</button></a>
+        </div>
+        <p class="card-text text-muted">{{ event.description }}.</p>
+        <p class="text-muted">{{ event.start_date }} to {{ event.end_date }}</p>
+        <div class="d-flex justify-content-between">
+            <a href="#">Copy link</a>
+            <a href="#" class="btn btn-outline-primary getstarted mt-3">Share</a>
+        </div>
+        </div>
+    </div>
+    </div>
+
+      <!--CREATE MODAL FORM-->
+  <div class="modal fade" id="getstarted" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title mx-auto fw-bold" id="exampleModalLabel">Edit Events</h5>
+          <a href="{{ url_for('event', event_id=event.id) }}"><button type="button" 
+            class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></a>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <form class="form-control p-2" method="post">
+              {{ form.hidden_tag() }}
+              <div class="form-group mb-2">
+                {{ form.title.label(class='mb-2 fw-bold') }}
+                {{ form.title(class='form-control',) }}
+              </div>
+              <div class="form-group mb-2">
+                {{ form.start_date.label(class='mb-2 fw-bold') }}
+                {{ form.start_date(class='form-control')}}
+              </div>
+              <div class="form-group mb-2">
+                {{ form.end_date.label(class='mb-2 fw-bold') }}
+                {{ form.end_date(class='form-control')}}
+              </div>
+              <div class="form-group mb-2">
+                {{ form.description.label(class='mb-2 fw-bold') }}
+                {{ form.description(class='form-control')}}
+              </div>
+              <div class="form-group mb-3">
+                {{ form.invitees.label(class='mb-2 fw-bold') }}
+                {{ form.invitees(class='form-control')}}
+              </div>
+              {{ form.submit(class='btn btn-primary')}}
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
