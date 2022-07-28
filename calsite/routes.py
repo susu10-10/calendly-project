@@ -95,14 +95,17 @@ def homepage():
     if form.validate_on_submit():
         event = Events(
             title=form.title.data, start_date=form.start_date.data,
-            end_date=form.end_date.data, description=form.description.data,
+            start_time=form.start_time.data,
+            end_date=form.end_date.data, end_time=form.end_time.data,
+            description=form.description.data,
             invitees=form.invitees.data, author=current_user)
         db.session.add(event)
         db.session.commit()
         flash('Your Event has been created!', 'success')
         return redirect(url_for('homepage'))
 
-    myevent = Events.query.all()
+    
+    myevent = current_user.events
     return render_template('homepage.html', form=form, myevent=myevent)
 
 @app.route('/event/<int:event_id>/', methods=['GET','POST'])
@@ -115,7 +118,9 @@ def event(event_id):
     if form.validate_on_submit():
         event.title = form.title.data
         event.start_date = form.start_date.data
+        event.start_time = form.start_time.data
         event.end_date = form.end_date.data
+        event.end_time = form.end_time.data
         event.description = form.description.data
         event.invitees = form.invitees.data
         db.session.commit()
@@ -138,6 +143,5 @@ def delete_event(event_id):
     flash('Your Event has been removed!', 'success')
     return redirect(url_for('homepage'))
 
-# def get_google_provider_cfg():
-#     return requests.get(GOOGLE_DISCOVERY_URL).json
+
 

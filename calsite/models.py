@@ -34,14 +34,16 @@ class User(db.Model, UserMixin):
 class Events(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50))
-    start_date = db.Column(db.DateTime, nullable=False)
-    end_date = db.Column(db.DateTime, nullable=False)
+    start_date = db.Column(db.Date, nullable=False, default=datetime.utcnow)
+    start_time = db.Column(db.Time, nullable=False, default=datetime.utcnow)
+    end_date = db.Column(db.Date, nullable=False, default=datetime.utcnow)
+    end_time = db.Column(db.Time, nullable=False, default=datetime.utcnow)
     description = db.Column(db.String(50))
     invitees = db.Column(db.Text(250), nullable=False)
     # is_cancelled = db.Column(Boolean, unique=False, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
-        return f"Event {self.title} on {self.start_date} {self.author.fullname}"
+        return f"Event {self.title} on {self.start_date}---{self.start_time} {self.author.fullname}"
 
 

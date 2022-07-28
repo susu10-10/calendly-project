@@ -17,7 +17,7 @@
                   <h5><a href="{{ url_for('event', event_id=event.id) }}" class="text-decoration-none">{{ event.title }}</a></h5>
                 </div>
                 <p class="card-text text-muted">{{ event.description }}.</p>
-                <p class="text-muted">{{ event.start_date }} to {{ event.end_date }}</p>
+                <p class="text-muted">{{ event.start_date }} at {{ event.start_time }} to {{ event.end_date }} {{ event.end_time }}</p>
                 <div class="d-flex justify-content-between">
                   <a href="#">Copy link</a>
                   <a href="#" class="btn btn-outline-primary getstarted mt-3">Share</a>
@@ -49,10 +49,30 @@
               <div class="form-group mb-2">
                 {{ form.start_date.label(class='mb-2 fw-bold') }}
                 {{ form.start_date(class='form-control')}}
+                {% for error in form.start_date.errors %}
+                  <span class="text-danger">[{{ error }}]</span>
+                {% endfor %}
+              </div>
+              <div class="form-group mb-2">
+                {{ form.start_time.label(class='mb-2 fw-bold') }}
+                {{ form.start_time(class='form-control')}}
+                {% for error in form.start_time.errors %}
+                  <span class="text-danger">[{{ error }}]</span>
+                {% endfor %}
               </div>
               <div class="form-group mb-2">
                 {{ form.end_date.label(class='mb-2 fw-bold') }}
                 {{ form.end_date(class='form-control')}}
+                {% for error in form.end_date.errors %}
+                  <span class="text-danger">[{{ error }}]</span>
+                {% endfor %}
+              </div>
+              <div class="form-group mb-2">
+                {{ form.end_time.label(class='mb-2 fw-bold') }}
+                {{ form.end_time(class='form-control')}}
+                {% for error in form.end_time.errors %}
+                  <span class="text-danger">[{{ error }}]</span>
+                {% endfor %}
               </div>
               <div class="form-group mb-2">
                 {{ form.description.label(class='mb-2 fw-bold') }}
